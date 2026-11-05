@@ -36,9 +36,9 @@ Los identificadores del Manual en Producción, la Base de conocimiento fiscal y 
 ## Paso 2 · Bienvenida y código de alta
 
 - Pide que pegue el **código de alta** que le ha pasado Claudia. Es un bloque que empieza por `ALTA-AGENTE-GESTORIA` y contiene JSON.
-- Léelo. Campos esperados: `nombre`, `nombre_comercial`, `email`, `a_que_se_dedica`, `comunidad`, `municipio_cp`, `irpf`, `iva`, `regimen`, `actividades`, `fecha_alta`, `modelos`, `banderas`, `bancos`, `banco_cuota`, `plataformas`, `donde_facturas`, `email_facturas`, `pedido_systeme`, `version`, `cuenta_google`, `manual_id`, `base_id`, `plantilla_id`.
+- Léelo. Campos esperados: `nombre`, `nombre_comercial`, `email`, `a_que_se_dedica`, `comunidad`, `municipio_cp`, `irpf`, `iva`, `regimen`, `actividades`, `fecha_alta`, `modelos`, `banderas`, `bancos`, `banco_cuota`, `plataformas`, `donde_facturas`, `email_facturas`, `pedido_systeme`, `version`, `cuenta_google`, `carpeta_url`, `manual_id`, `base_id`, `plantilla_id`.
 - Si el `pedido_systeme` del código no coincide con el que dio en el paso 1, para y pide que hable con Claudia.
-- Comprueba que puedes abrir los tres documentos (`manual_id`, `base_id`, `plantilla_id`) con su cuenta. Si no puedes, para: su acceso aún no está activado; que avise a Claudia indicando su `cuenta_google`.
+- Comprueba que puedes abrir los tres documentos (`manual_id`, `base_id`, `plantilla_id`) con su cuenta. Si no puedes, su acceso aún no está activado: pídele que abra `carpeta_url` en el navegador con su cuenta de Google y pulse «Solicitar acceso». A Claudia le llega un email de Google; comprueba el pago y lo aprueba desde ese mismo email. Cuando el cliente te diga que ya tiene acceso, vuelve a comprobar. No sigas sin acceso.
 - Saluda por el nombre de pila y enséñale en tres o cuatro líneas su mapa fiscal (modelos que le tocan) y las banderas pendientes.
 
 ## Paso 3 · Privacidad de su cuenta
@@ -70,16 +70,23 @@ En los tres casos:
 
 ## Paso 6 · Cómo le avisa el agente
 
-Por defecto, sin que el cliente haga nada: **avisos desde su propio Gmail**. No le preguntes; díselo en dos líneas:
-- El agente le escribe desde su Gmail a su alias `sucorreo+agente-gestoria@…` (mismo dominio que su dirección). Le llega a su bandeja de siempre con la etiqueta «Gestionado por IA/Agente Gestoría».
-- Para hablar con el agente: responder a sus emails o escribir a ese alias.
+Pregunta antes de configurar nada, con las dos opciones en dos líneas cada una:
 
-Hazlo tú:
+**A) Desde su propio Gmail (recomendada, no hay que configurar nada).**
+- El agente le escribe desde su Gmail a su alias `sucorreo+agente-gestoria@…`, con la etiqueta «Gestionado por IA/Agente Gestoría». Le llega a su bandeja de siempre.
+- Para hablar con el agente: responder a sus emails o escribir a ese alias.
+- Solo para cuentas de Google (Gmail o Google Workspace).
+
+**B) Desde el dominio de su web, con Resend.**
+- Los avisos llegan desde «Agente Gestoría | Su negocio <agentes@sudominio.com>».
+- Hace falta cuenta en https://resend.com, verificar su dominio y guardar una clave en el entorno de la rutina.
+
+Si elige A, hazlo tú:
 - Calcula el alias a partir de su dirección principal (`nombre@dominio` → `nombre+agente-gestoria@dominio`).
 - Crea la etiqueta «Gestionado por IA/Agente Gestoría» en su Gmail si no existe (`list_labels` y, si falta, `create_label`).
 - Anota: método `gmail`, alias y dirección principal (desde la que responderá).
 
-Solo si el cliente lo pide o dice que quiere recibirlo desde el dominio de su web: **Resend** (remitente tipo `agentes@sudominio.com`). Requiere cuenta en https://resend.com, dominio verificado, una clave con permiso solo de envío y un secreto de red para `api.resend.com`, tipo «Bearer», en el entorno del paso 6 bis. Anota: método `resend`, remitente y destinatario.
+Si elige B: cuenta en Resend, dominio verificado, una clave con permiso solo de envío y un secreto de red para `api.resend.com`, tipo «Bearer», en el entorno del paso 6 bis. Anota: método `resend`, remitente y destinatario.
 
 **6 bis · Entorno de la rutina (guiado).** En https://claude.ai/code, ir a los entornos de la nube y crear uno llamado «Agente Gestoría», con acceso de red «Personalizado» y estos dominios: `sede.agenciatributaria.gob.es`, `boe.es`, `seg-social.es`, `infoautonomos.com` (y `api.resend.com` si usa Resend). Pide el **identificador del entorno** (empieza por `env_`). Nunca le pidas una clave.
 
