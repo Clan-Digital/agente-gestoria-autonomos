@@ -1,0 +1,17 @@
+{
+  "name": "agentes-clan-digital",
+  "owner": {
+    "name": "Clan Digital",
+    "email": "clan@clandigital.es"
+  },
+  "metadata": {
+    "description": "Agentes de IA de Clan Digital para autónomos y pequeños negocios."
+  },
+  "plugins": [
+    {
+      "name": "agente-gestoria",
+      "source": "./plugins/agente-gestoria",
+      "description": "Agente de Contabilidad e Impuestos para autónomos: instala y revisa la rutina diaria que lleva tu contabilidad en tu propia cuenta."
+    }
+  ]
+}

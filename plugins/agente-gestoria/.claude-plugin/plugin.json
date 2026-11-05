@@ -1,0 +1,12 @@
+{
+  "name": "agente-gestoria",
+  "version": "0.1.0",
+  "description": "Instala y revisa el Agente de Contabilidad e Impuestos de Clan Digital en la cuenta del cliente.",
+  "author": {
+    "name": "Clan Digital",
+    "email": "clan@clandigital.es",
+    "url": "https://clandigital.es"
+  },
+  "homepage": "https://clandigital.es",
+  "keywords": ["contabilidad", "impuestos", "autonomos", "gestoria"]
+}
