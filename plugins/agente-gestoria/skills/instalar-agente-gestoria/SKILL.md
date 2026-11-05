@@ -70,19 +70,18 @@ En los tres casos:
 
 ## Paso 6 · Cómo le avisa el agente
 
-Pregunta cómo quiere recibir los avisos y explica las dos opciones en dos líneas:
+Por defecto, sin que el cliente haga nada: **avisos desde su propio Gmail**. No le preguntes; díselo en dos líneas:
+- El agente le escribe desde su Gmail a su alias `sucorreo+agente-gestoria@…` (mismo dominio que su dirección). Le llega a su bandeja de siempre con la etiqueta «Gestionado por IA/Agente Gestoría».
+- Para hablar con el agente: responder a sus emails o escribir a ese alias.
 
-**A) Desde su propio Gmail (por defecto, sin configurar nada).** El agente se escribe desde su Gmail a un alias suyo, `sucorreo+agentecontabilidad@gmail.com` (funciona en Gmail, Google Workspace y Outlook). Los avisos llegan a su bandeja de siempre con la etiqueta «Gestionado por IA/Agente Gestoría». Para hablar con el agente: responder a sus emails o escribir a ese alias.
-- Anota: método `gmail`, dirección del alias y dirección principal (desde la que responderá).
-- Pide que cree en Gmail la etiqueta «Gestionado por IA/Agente Gestoría» si no existe.
-- Entorno de la rutina: igualmente hace falta uno (paso 6 bis) para los dominios de consulta fiscal, sin secretos.
+Hazlo tú:
+- Calcula el alias a partir de su dirección principal (`nombre@dominio` → `nombre+agente-gestoria@dominio`).
+- Crea la etiqueta «Gestionado por IA/Agente Gestoría» en su Gmail si no existe (`list_labels` y, si falta, `create_label`).
+- Anota: método `gmail`, alias y dirección principal (desde la que responderá).
 
-**B) Desde su dominio con Resend (si tiene web propia y lo prefiere).** Remitente tipo `agentes@sudominio.com`.
-1. Cuenta en https://resend.com, dominio verificado y una clave con permiso solo de envío.
-2. En el entorno de la rutina (paso 6 bis), un secreto de red para `api.resend.com`, tipo «Bearer», con esa clave.
-- Anota: método `resend`, remitente y destinatario.
+Solo si el cliente lo pide o dice que quiere recibirlo desde el dominio de su web: **Resend** (remitente tipo `agentes@sudominio.com`). Requiere cuenta en https://resend.com, dominio verificado, una clave con permiso solo de envío y un secreto de red para `api.resend.com`, tipo «Bearer», en el entorno del paso 6 bis. Anota: método `resend`, remitente y destinatario.
 
-**6 bis · Entorno de la rutina (guiado).** En https://claude.ai/code, ir a los entornos de la nube y crear uno llamado «Agente Gestoría», con acceso de red «Personalizado» y estos dominios: `sede.agenciatributaria.gob.es`, `boe.es`, `seg-social.es`, `infoautonomos.com` (y `api.resend.com` si eligió B). Pide el **identificador del entorno** (empieza por `env_`). Nunca le pidas una clave.
+**6 bis · Entorno de la rutina (guiado).** En https://claude.ai/code, ir a los entornos de la nube y crear uno llamado «Agente Gestoría», con acceso de red «Personalizado» y estos dominios: `sede.agenciatributaria.gob.es`, `boe.es`, `seg-social.es`, `infoautonomos.com` (y `api.resend.com` si usa Resend). Pide el **identificador del entorno** (empieza por `env_`). Nunca le pidas una clave.
 
 ## Paso 7 · Crear su rutina diaria
 
@@ -95,7 +94,7 @@ Pregunta cómo quiere recibir los avisos y explica las dos opciones en dos líne
   - `mcp_connections`: solo estos conectores, con solo estas herramientas:
     - Google Drive: `search_files`, `read_file_content`, `download_file_content`, `get_file_metadata`, `list_recent_files`, `create_file`
     - Google Sheets: `get_spreadsheet`, `get_values`, `update_values`, `append_values`, `update_formulas`, `update_spreadsheet`, `insert_dimension`
-    - Gmail: `search_threads`, `get_thread`, `get_message`, `list_labels`, `unlabel_message`, `label_message` y, solo si eligió avisos por Gmail, `send_message`
+    - Gmail: `search_threads`, `get_thread`, `get_message`, `list_labels`, `unlabel_message`, `label_message` y `send_message` (solo para el aviso; salvo que use Resend)
     - Google Docs: `read_doc`
     - Banco (si lo hay; Qonto): lectura y `request_attachment_upload`, `upload_attachment`
 - Si no tienes `RemoteTrigger`, guía al cliente con `/schedule` usando los mismos datos.
