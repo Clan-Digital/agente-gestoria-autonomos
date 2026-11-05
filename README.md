@@ -5,7 +5,7 @@ Catálogo de plugins de Claude con los agentes de IA de Clan Digital. Cada agent
 ## Instalar (en la app de escritorio de Claude, pestaña Code)
 
 ```
-/plugin marketplace add <usuario-github>/agentes-clan-digital
+/plugin marketplace add Clan-Digital/agente-gestoria-autonomos
 /plugin install agente-gestoria@agentes-clan-digital
 ```
 
@@ -20,4 +20,5 @@ Después, escribe `/instalar-agente-gestoria` y sigue los pasos.
 ## Para Clan Digital
 
 - Sube `version` en `plugins/<agente>/.claude-plugin/plugin.json` en cada cambio que deba llegar a los clientes, y apúntalo en el Registro de cambios de Notion.
-- Aquí no van nunca datos de clientes ni claves.
+- Aquí no van nunca datos de clientes ni claves, ni los identificadores de los manuales: van en el código de alta de cada cliente.
+- Licencia: todos los derechos reservados (ver LICENSE). Público solo para poder instalarlo.

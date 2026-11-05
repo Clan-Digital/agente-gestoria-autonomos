@@ -17,11 +17,10 @@ Guías a un autónomo, normalmente en una llamada con Claudia (Clan Digital), pa
 - Si un paso falla, explicas qué ha pasado en una frase, propones cómo seguir y no inventas resultados.
 - Al final de cada paso, apuntas lo conseguido en tu resumen interno (lo necesitarás en el paso 9).
 
-## Datos fijos de Clan Digital
+## Documentos de Clan Digital
 
-- Manual en Producción (Google Doc, solo lectura): `1heXQiGDmiiQ5_RzUD5RzEjX3hU2Fktub-YkkpTcdzAs`
-- Base de conocimiento fiscal (Google Doc, solo lectura): `1faN52A4tI0kJKyM8MszDWiU3-GxQ8l6EE_wO2Wu8Kf4`
-- Plantilla del Excel (Google Sheet): `1geNUoP2zsEyhfVvsiCytsuSTXr_1xvu7NqGtc0_4mPc`
+Los identificadores del Manual en Producción, la Base de conocimiento fiscal y la plantilla del Excel vienen en el código de alta (`manual_id`, `base_id`, `plantilla_id`). No están en este plugin. Clan Digital solo los comparte, en solo lectura, con la cuenta de Google de quien ha pagado.
+
 - Versión del agente que instalas: la que indique el código de alta (`version`); si no viene, `1.0`.
 - Plantillas de este asistente: `plantillas/datos-del-cliente.md` y `plantillas/rutina.md` (en la carpeta de esta skill).
 
@@ -37,8 +36,9 @@ Guías a un autónomo, normalmente en una llamada con Claudia (Clan Digital), pa
 ## Paso 2 · Bienvenida y código de alta
 
 - Pide que pegue el **código de alta** que le ha pasado Claudia. Es un bloque que empieza por `ALTA-AGENTE-GESTORIA` y contiene JSON.
-- Léelo. Campos esperados: `nombre`, `nombre_comercial`, `email`, `a_que_se_dedica`, `comunidad`, `municipio_cp`, `irpf`, `iva`, `regimen`, `actividades`, `fecha_alta`, `modelos`, `banderas`, `bancos`, `banco_cuota`, `plataformas`, `donde_facturas`, `email_facturas`, `pedido_systeme`, `version`.
+- Léelo. Campos esperados: `nombre`, `nombre_comercial`, `email`, `a_que_se_dedica`, `comunidad`, `municipio_cp`, `irpf`, `iva`, `regimen`, `actividades`, `fecha_alta`, `modelos`, `banderas`, `bancos`, `banco_cuota`, `plataformas`, `donde_facturas`, `email_facturas`, `pedido_systeme`, `version`, `cuenta_google`, `manual_id`, `base_id`, `plantilla_id`.
 - Si el `pedido_systeme` del código no coincide con el que dio en el paso 1, para y pide que hable con Claudia.
+- Comprueba que puedes abrir los tres documentos (`manual_id`, `base_id`, `plantilla_id`) con su cuenta. Si no puedes, para: su acceso aún no está activado; que avise a Claudia indicando su `cuenta_google`.
 - Saluda por el nombre de pila y enséñale en tres o cuatro líneas su mapa fiscal (modelos que le tocan) y las banderas pendientes.
 
 ## Paso 3 · Privacidad de su cuenta
@@ -68,16 +68,21 @@ En los tres casos:
 - **Datos del cliente:** rellena `plantillas/datos-del-cliente.md` con el código de alta y los ids de este paso, y créalo como Google Doc (`create_file` con el contenido y el tipo `application/vnd.google-apps.document`) al lado del Excel. Lo que no sepas, déjalo como «pendiente» y dilo.
 - Si la copia de la plantilla falla por permisos, para y avisa a Claudia: la plantilla tiene que estar compartida con cualquiera que tenga el enlace.
 
-## Paso 6 · Avisos por email (paso guiado)
+## Paso 6 · Cómo le avisa el agente
 
-El agente avisa por email con Resend desde el dominio del cliente. Ninguna herramienta puede guardar la clave: lo hace el cliente, guiado.
+Pregunta cómo quiere recibir los avisos y explica las dos opciones en dos líneas:
 
-1. Cuenta en https://resend.com, dominio verificado y una clave con permiso solo de envío. (Si Claudia lo prepara por él, salta esta parte.)
-2. En https://claude.ai/code, ir a los entornos de la nube y crear uno llamado «Agente Gestoría» con:
-   - Acceso de red «Personalizado», con estos dominios: `api.resend.com`, `sede.agenciatributaria.gob.es`, `boe.es`, `seg-social.es`, `infoautonomos.com`.
-   - Un secreto de red para `api.resend.com`, tipo «Bearer», con la clave de Resend.
-3. Pide que te diga el **identificador del entorno** (empieza por `env_`). Nunca le pidas la clave.
-- Anota el remitente (por ejemplo `agentes@sudominio.com`) y el email que recibirá los avisos. Recomienda un alias tipo `tuemail+agentecontabilidad@gmail.com`.
+**A) Desde su propio Gmail (por defecto, sin configurar nada).** El agente se escribe desde su Gmail a un alias suyo, `sucorreo+agentecontabilidad@gmail.com` (funciona en Gmail, Google Workspace y Outlook). Los avisos llegan a su bandeja de siempre con la etiqueta «Gestionado por IA/Agente Gestoría». Para hablar con el agente: responder a sus emails o escribir a ese alias.
+- Anota: método `gmail`, dirección del alias y dirección principal (desde la que responderá).
+- Pide que cree en Gmail la etiqueta «Gestionado por IA/Agente Gestoría» si no existe.
+- Entorno de la rutina: igualmente hace falta uno (paso 6 bis) para los dominios de consulta fiscal, sin secretos.
+
+**B) Desde su dominio con Resend (si tiene web propia y lo prefiere).** Remitente tipo `agentes@sudominio.com`.
+1. Cuenta en https://resend.com, dominio verificado y una clave con permiso solo de envío.
+2. En el entorno de la rutina (paso 6 bis), un secreto de red para `api.resend.com`, tipo «Bearer», con esa clave.
+- Anota: método `resend`, remitente y destinatario.
+
+**6 bis · Entorno de la rutina (guiado).** En https://claude.ai/code, ir a los entornos de la nube y crear uno llamado «Agente Gestoría», con acceso de red «Personalizado» y estos dominios: `sede.agenciatributaria.gob.es`, `boe.es`, `seg-social.es`, `infoautonomos.com` (y `api.resend.com` si eligió B). Pide el **identificador del entorno** (empieza por `env_`). Nunca le pidas una clave.
 
 ## Paso 7 · Crear su rutina diaria
 
@@ -90,7 +95,7 @@ El agente avisa por email con Resend desde el dominio del cliente. Ninguna herra
   - `mcp_connections`: solo estos conectores, con solo estas herramientas:
     - Google Drive: `search_files`, `read_file_content`, `download_file_content`, `get_file_metadata`, `list_recent_files`, `create_file`
     - Google Sheets: `get_spreadsheet`, `get_values`, `update_values`, `append_values`, `update_formulas`, `update_spreadsheet`, `insert_dimension`
-    - Gmail: `search_threads`, `get_thread`, `get_message`, `list_labels`, `unlabel_message`, `label_message`
+    - Gmail: `search_threads`, `get_thread`, `get_message`, `list_labels`, `unlabel_message`, `label_message` y, solo si eligió avisos por Gmail, `send_message`
     - Google Docs: `read_doc`
     - Banco (si lo hay; Qonto): lectura y `request_attachment_upload`, `upload_attachment`
 - Si no tienes `RemoteTrigger`, guía al cliente con `/schedule` usando los mismos datos.
