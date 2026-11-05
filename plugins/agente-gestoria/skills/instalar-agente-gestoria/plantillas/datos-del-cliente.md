@@ -44,7 +44,6 @@ Documento que lee el Agente Gestoría en cada pasada. Cómo trabaja el agente es
 - Respuestas válidas: solo las enviadas desde {{EMAIL_RESPUESTAS}}.
 - Manual de marca para el Excel: {{MANUAL_MARCA}}.
 
-## Particularidades
+## Reglas
 
-- {{PARTICULARIDADES}}
-- Las reglas que el cliente va dando por email están en «Reglas», en la pestaña «Instrucciones» del Excel.
+- Las reglas contables de este cliente (las acordadas al instalar y las que dé por email) están en la pestaña «Reglas del cliente» del Excel. Aquí no se repiten.

@@ -21,7 +21,7 @@ Guías a un autónomo, normalmente en una llamada con Claudia (Clan Digital), pa
 
 Los identificadores del Manual en Producción, la Base de conocimiento fiscal y la plantilla del Excel vienen en el código de alta (`manual_id`, `base_id`, `plantilla_id`). No están en este plugin. Clan Digital solo los comparte, en solo lectura, con la cuenta de Google de quien ha pagado.
 
-- Versión del agente que instalas: la que indique el código de alta (`version`); si no viene, `1.0`.
+- Versión del agente que instalas: la que indique el código de alta (`version`); si no viene, `1.1`.
 - Plantillas de este asistente: `plantillas/datos-del-cliente.md` y `plantillas/rutina.md` (en la carpeta de esta skill).
 
 ## Paso 0 · Comprobaciones previas (sin hablar con el cliente)
@@ -65,6 +65,7 @@ Estructura nueva (proponla y deja elegir dónde): carpeta `Agente Gestoría` ›
 
 En los tres casos:
 - **Excel:** copia la plantilla con `copy_file` al sitio que elija, con el nombre `Contabilidad e impuestos AAAA · NOMBRE COMERCIAL`. Si tiene manual de marca, no cambies nada ahora: apúntalo.
+- **Reglas del cliente:** si en el código de alta o en la llamada hay reglas propias del cliente (cómo clasificar un proveedor, qué parte de un gasto es de la actividad, qué cargos ignorar…), escríbelas en la pestaña «Reglas del cliente» de su Excel, una por fila: Fecha (hoy), Regla, Código «—», Origen «Instalación» y Estado «Activa». No las pongas en los Datos del cliente.
 - **Datos del cliente:** rellena `plantillas/datos-del-cliente.md` con el código de alta y los ids de este paso, y créalo como Google Doc (`create_file` con el contenido y el tipo `application/vnd.google-apps.document`) al lado del Excel. Lo que no sepas, déjalo como «pendiente» y dilo.
 - Si la copia de la plantilla falla por permisos, para y avisa a Claudia: la plantilla tiene que estar compartida con cualquiera que tenga el enlace.
 
@@ -101,7 +102,7 @@ Si elige B: cuenta en Resend, dominio verificado, una clave con permiso solo de 
   - `mcp_connections`: solo estos conectores, con solo estas herramientas:
     - Google Drive: `search_files`, `read_file_content`, `download_file_content`, `get_file_metadata`, `list_recent_files`, `create_file`
     - Google Sheets: `get_spreadsheet`, `get_values`, `update_values`, `append_values`, `update_formulas`, `update_spreadsheet`, `insert_dimension`
-    - Gmail: `search_threads`, `get_thread`, `get_message`, `list_labels`, `unlabel_message`, `label_message` y `send_message` (solo para el aviso; salvo que use Resend)
+    - Gmail: `search_threads`, `get_thread`, `get_message`, `list_labels`, `unlabel_message`, `label_message` y `send_message` (solo para el aviso y las respuestas a mensajes «Para»; salvo que use Resend)
     - Google Docs: `read_doc`
     - Banco (si lo hay; Qonto): lectura y `request_attachment_upload`, `upload_attachment`
 - Si no tienes `RemoteTrigger`, guía al cliente con `/schedule` usando los mismos datos.
