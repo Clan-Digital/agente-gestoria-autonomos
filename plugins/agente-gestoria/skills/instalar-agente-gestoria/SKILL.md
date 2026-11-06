@@ -21,7 +21,7 @@ Guías a un autónomo, normalmente en una llamada con Claudia (Clan Digital), pa
 
 Los identificadores del Manual en Producción, la Base de conocimiento fiscal y la plantilla del Excel vienen en el código de alta (`manual_id`, `base_id`, `plantilla_id`). No están en este plugin. Clan Digital solo los comparte, en solo lectura, con la cuenta de Google de quien ha pagado.
 
-- Versión del agente que instalas: la que indique el código de alta (`version`); si no viene, `1.1`.
+- Versión del agente que instalas: la que indique el código de alta (`version`); si no viene, `1.2`.
 - Plantillas de este asistente: `plantillas/datos-del-cliente.md` y `plantillas/rutina.md` (en la carpeta de esta skill).
 
 ## Paso 0 · Comprobaciones previas (sin hablar con el cliente)
