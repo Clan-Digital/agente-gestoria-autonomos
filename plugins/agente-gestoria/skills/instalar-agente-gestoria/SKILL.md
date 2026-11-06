@@ -70,7 +70,7 @@ En los tres casos:
 - **Datos del cliente:** rellena `plantillas/datos-del-cliente.md` con el código de alta y los ids de este paso, y créalo como Google Doc (`create_file` con el contenido y el tipo `application/vnd.google-apps.document`) al lado del Excel. Lo que no sepas, déjalo como «pendiente» y dilo.
 - **Hoja de registro de actividad:** crea al lado del Excel una hoja de cálculo nueva (`create_file`, tipo `application/vnd.google-apps.spreadsheet`) llamada `Registro de actividad · Agente Gestoría · NOMBRE COMERCIAL`. Renombra su primera pestaña a «Latidos-Registro de Actividad/Agentes» (Sheets `update_spreadsheet`, `updateSheetProperties`) y escribe en la fila 1 estas cabeceras: Fecha y hora · Instalación/Cliente · Agente · Versión · Resultado · Detalle de Actividad. Anota su id.
 - **Compartir el registro con Clan Digital:** explica en dos líneas que Claudia solo verá esta hoja (cuándo pasó el agente y si fue bien, sin importes ni nombres de sus clientes o proveedores) para vigilar que el agente funciona, y pide permiso. Si dice que sí, compártela con `share_file` (`emailAddress` `cmanashuete@gmail.com`, `role` `reader`). Registro: `hoja`. Si dice que no o falla, usa el plan B: el agente enviará cada día una línea por email a Claudia con el asunto «Registro de actividad | Agente Gestoría · NOMBRE COMERCIAL». Registro: `email`. Díselo al cliente.
-- Si la copia de la plantilla falla por permisos, para y avisa a Claudia: la plantilla tiene que estar compartida con cualquiera que tenga el enlace.
+- Si la copia de la plantilla falla por permisos, su acceso aún no está activado: vuelve al paso 2 (abrir `carpeta_url` y «Solicitar acceso») y, si sigue fallando, para y avisa a Claudia.
 
 ## Paso 5 bis · Su programa de facturación
 
