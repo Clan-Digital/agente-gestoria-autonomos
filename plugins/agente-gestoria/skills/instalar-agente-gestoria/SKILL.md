@@ -82,10 +82,16 @@ Mira `programa_facturacion` y `donde_estan_facturas` del código de alta y conf�
   - Comprueba que ves sus herramientas de listar facturas y anota el conector para el paso 7 (solo herramientas de lectura de facturas y de PDF).
   - Facturas emitidas: «Las lee del conector de <programa>».
   - Sin probar todavía: que la rutina en la nube use un conector personalizado. Si en la primera pasada (paso 8) no lo ve, pasa al caso siguiente y avisa a Claudia.
-- **Otro programa (Quipu, Contasimple, Billin, Anfix, Sage, Excel o Word, otro):** ayúdale a que cada factura emitida llegue sola a un sitio que el agente lee:
-  - mejor: que el programa le mande copia de cada factura al correo de facturas (casi todos permiten enviarse copia o CCO al emitir);
-  - si no: que la guarde en la carpeta `Facturas de Ingresos` del trimestre.
-  - Facturas emitidas: «Copia por email a <correo>» o «Las guarda en Drive».
+- **Otro programa (Quipu, Contasimple, Billin, Anfix, Sage, otro):** primero comprueba si tiene API para leer facturas.
+  - Conocidas a 6-11-2026: Quipu (API con OAuth2, en su plan Solution o superior), Contasimple (API con clave), Billin (API con token, solo en el Plan Ilimitado), Sage Active (API abierta en Starter y Essentials, sin verificar). Anfix: sin documentación pública. SumUp Facturas, Declarando y TaxDown: sin API. Si es otro, busca en la web oficial del programa si tiene API y qué plan la incluye.
+  - **Si tiene API**, explícale las dos opciones y deja que elija:
+    - **A) Conectarlo por API:** el agente lee sus facturas directamente del programa. El cliente crea en su programa una clave de solo lectura, si el programa lo permite. Después la guarda él mismo como secreto de red en el entorno de la rutina (paso 6 bis), con el dominio de la API permitido. Nunca te la pega en el chat. Avisa si su plan no incluye la API o si es una API sin probar con este agente. Facturas emitidas: «Las lee de la API de <programa> (<dominio>)».
+    - **B) Copia por email o a Drive**, como en el punto siguiente.
+  - **Si no tiene API, o elige B:** ayúdale a que cada factura emitida llegue sola a un sitio que el agente lee:
+    - mejor: que el programa le mande copia de cada factura al correo de facturas (casi todos permiten enviarse copia o CCO al emitir);
+    - si no: que la guarde en la carpeta `Facturas de Ingresos` del trimestre.
+    - Facturas emitidas: «Copia por email a <correo>» o «Las guarda en Drive».
+- **Excel o Word:** como «Ninguno».
 - **Ninguno:** como hasta ahora; las facturas emitidas van a `Facturas de Ingresos` del trimestre. Facturas emitidas: «Las guarda en Drive».
 - **Facturas en una carpeta de su ordenador:** súbelas tú ahora a Drive (las de los últimos 12 meses) y, para las nuevas, propón Google Drive para ordenador, que sincroniza esa carpeta con Drive. La rutina corre en la nube y no puede leer su ordenador.
 
@@ -111,7 +117,7 @@ Si elige A, hazlo tú:
 
 Si elige B: cuenta en Resend, dominio verificado, una clave con permiso solo de envío y un secreto de red para `api.resend.com`, tipo «Bearer», en el entorno del paso 6 bis. Anota: método `resend`, remitente y destinatario.
 
-**6 bis · Entorno de la rutina (guiado).** En https://claude.ai/code, ir a los entornos de la nube y crear uno llamado «Agente Gestoría», con acceso de red «Personalizado» y estos dominios: `sede.agenciatributaria.gob.es`, `boe.es`, `seg-social.es`, `infoautonomos.com` (y `api.resend.com` si usa Resend). Pide el **identificador del entorno** (empieza por `env_`). Nunca le pidas una clave.
+**6 bis · Entorno de la rutina (guiado).** En https://claude.ai/code, ir a los entornos de la nube y crear uno llamado «Agente Gestoría», con acceso de red «Personalizado» y estos dominios: `sede.agenciatributaria.gob.es`, `boe.es`, `seg-social.es`, `infoautonomos.com` (y `api.resend.com` si usa Resend; y el dominio de la API de su programa de facturación si eligió conectarlo por API en el paso 5 bis, con su clave como secreto de red). Pide el **identificador del entorno** (empieza por `env_`). Nunca le pidas una clave.
 
 ## Paso 7 · Crear su rutina diaria
 

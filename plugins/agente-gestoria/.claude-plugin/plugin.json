@@ -1,6 +1,6 @@
 {
   "name": "agente-gestoria",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Instala y revisa el Agente de Contabilidad e Impuestos de Clan Digital en la cuenta del cliente.",
   "author": {
     "name": "Clan Digital",
