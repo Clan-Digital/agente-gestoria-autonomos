@@ -36,7 +36,8 @@ Los identificadores del Manual en Producción, la Base de conocimiento fiscal y 
 ## Paso 2 · Bienvenida y código de alta
 
 - Pide que pegue el **código de alta** que le ha pasado Claudia. Es un bloque que empieza por `ALTA-AGENTE-GESTORIA` y contiene JSON.
-- Léelo. Campos esperados: `nombre`, `nombre_comercial`, `email`, `a_que_se_dedica`, `comunidad`, `municipio_cp`, `irpf`, `iva`, `regimen`, `actividades`, `fecha_alta`, `modelos`, `banderas`, `bancos`, `banco_cuota`, `plataformas`, `donde_facturas`, `email_facturas`, `pedido_systeme`, `version`, `cuenta_google`, `carpeta_url`, `manual_id`, `base_id`, `plantilla_id`.
+- Léelo. Campos esperados: `nombre`, `nombre_comercial`, `email`, `a_que_se_dedica`, `comunidad`, `municipio_cp`, `irpf`, `iva`, `regimen`, `actividades`, `fecha_alta`, `modelos`, `banderas`, `bancos`, `banco_cuota`, `plataformas`, `donde_facturas`, `email_facturas`, `nombre_fiscal`, `nif`, `como_lleva_impuestos`, `que_le_interesa`, `hacienda`, `hacienda_detalle`, `programa_facturacion`, `donde_estan_facturas`, `pedido_systeme`, `version`, `cuenta_google`, `carpeta_url`, `manual_id`, `base_id`, `plantilla_id`.
+- El código lleva lo que el cliente contestó en el formulario de alta y en «Preparar mi llamada». Úsalo para rellenar los Datos del cliente y para elegir el camino del paso 5; no vuelvas a preguntar lo que ya está ahí, solo confírmalo.
 - Si el `pedido_systeme` del código no coincide con el que dio en el paso 1, para y pide que hable con Claudia.
 - Comprueba que puedes abrir los tres documentos (`manual_id`, `base_id`, `plantilla_id`) con su cuenta. Si no puedes, su acceso aún no está activado: pídele que abra `carpeta_url` en el navegador con su cuenta de Google y pulse «Solicitar acceso». A Claudia le llega un email de Google; comprueba el pago y lo aprueba desde ese mismo email. Cuando el cliente te diga que ya tiene acceso, vuelve a comprobar. No sigas sin acceso.
 - Saluda por el nombre de pila y enséñale en tres o cuatro líneas su mapa fiscal (modelos que le tocan) y las banderas pendientes.
@@ -48,7 +49,7 @@ Los identificadores del Manual en Producción, la Base de conocimiento fiscal y 
 
 ## Paso 4 · Conectar sus cuentas
 
-- Necesarios: **Gmail, Google Drive, Google Sheets y Google Docs**. Opcional: el conector de su banco, si existe (hoy, Qonto).
+- Necesarios: **Gmail, Google Drive, Google Sheets y Google Docs**. Opcional: el conector de su banco, si existe (hoy, Qonto), y el de su programa de facturación, si tiene (ver paso 5 bis).
 - Comprueba cuáles tienes disponibles en esta sesión mirando tus propias herramientas (aparecen como `mcp__<id>__<herramienta>`; por ejemplo `search_threads` es Gmail, `create_file` y `copy_file` son Drive, `get_values` es Sheets, `read_doc` es Docs, `list_transactions` es Qonto).
 - Si falta alguno: pide que abra https://claude.ai/customize/connectors, pulse «Conectar» en los que faltan y acepte los permisos con la cuenta de Google donde tiene sus facturas. Después, que te avise; vuelve a comprobar. Puede hacer falta abrir una sesión nueva para que aparezcan.
 - Anota, para cada conector, su `connector_uuid` (el `<id>` del nombre de la herramienta) y su URL. Los necesitas en el paso 7.
@@ -70,6 +71,25 @@ En los tres casos:
 - **Hoja de registro de actividad:** crea al lado del Excel una hoja de cálculo nueva (`create_file`, tipo `application/vnd.google-apps.spreadsheet`) llamada `Registro de actividad · Agente Gestoría · NOMBRE COMERCIAL`. Renombra su primera pestaña a «Latidos-Registro de Actividad/Agentes» (Sheets `update_spreadsheet`, `updateSheetProperties`) y escribe en la fila 1 estas cabeceras: Fecha y hora · Instalación/Cliente · Agente · Versión · Resultado · Detalle de Actividad. Anota su id.
 - **Compartir el registro con Clan Digital:** explica en dos líneas que Claudia solo verá esta hoja (cuándo pasó el agente y si fue bien, sin importes ni nombres de sus clientes o proveedores) para vigilar que el agente funciona, y pide permiso. Si dice que sí, compártela con `share_file` (`emailAddress` `cmanashuete@gmail.com`, `role` `reader`). Registro: `hoja`. Si dice que no o falla, usa el plan B: el agente enviará cada día una línea por email a Claudia con el asunto «Registro de actividad | Agente Gestoría · NOMBRE COMERCIAL». Registro: `email`. Díselo al cliente.
 - Si la copia de la plantilla falla por permisos, para y avisa a Claudia: la plantilla tiene que estar compartida con cualquiera que tenga el enlace.
+
+## Paso 5 bis · Su programa de facturación
+
+Mira `programa_facturacion` y `donde_estan_facturas` del código de alta y confírmalo con el cliente. Según el programa:
+
+- **Qonto, Holded o FacturaDirecta (tienen conector oficial):**
+  - Qonto está en el catálogo: https://claude.ai/customize/connectors › Qonto › Conectar.
+  - Holded (`https://mcp.holded.com/mcp`) y FacturaDirecta (`https://mcp.facturadirecta.com`) se añaden como conector personalizado en la misma página («Añadir conector personalizado», pegar la dirección y aceptar con su cuenta del programa).
+  - Comprueba que ves sus herramientas de listar facturas y anota el conector para el paso 7 (solo herramientas de lectura de facturas y de PDF).
+  - Facturas emitidas: «Las lee del conector de <programa>».
+  - Sin probar todavía: que la rutina en la nube use un conector personalizado. Si en la primera pasada (paso 8) no lo ve, pasa al caso siguiente y avisa a Claudia.
+- **Otro programa (Quipu, Contasimple, Billin, Anfix, Sage, Excel o Word, otro):** ayúdale a que cada factura emitida llegue sola a un sitio que el agente lee:
+  - mejor: que el programa le mande copia de cada factura al correo de facturas (casi todos permiten enviarse copia o CCO al emitir);
+  - si no: que la guarde en la carpeta `Facturas de Ingresos` del trimestre.
+  - Facturas emitidas: «Copia por email a <correo>» o «Las guarda en Drive».
+- **Ninguno:** como hasta ahora; las facturas emitidas van a `Facturas de Ingresos` del trimestre. Facturas emitidas: «Las guarda en Drive».
+- **Facturas en una carpeta de su ordenador:** súbelas tú ahora a Drive (las de los últimos 12 meses) y, para las nuevas, propón Google Drive para ordenador, que sincroniza esa carpeta con Drive. La rutina corre en la nube y no puede leer su ordenador.
+
+Escribe el resultado en «Facturas emitidas» de los Datos del cliente.
 
 ## Paso 6 · Cómo le avisa el agente
 
@@ -108,6 +128,7 @@ Si elige B: cuenta en Resend, dominio verificado, una clave con permiso solo de 
 - En `plantillas/rutina.md`, sustituye `{{REGLA_REGISTRO}}` y `{{REGLA_AVISOS}}` según lo elegido (hoja o email; gmail o resend) con los textos del comentario final de la plantilla, y borra el comentario.
     - Google Docs: `read_doc`
     - Banco (si lo hay; Qonto): lectura y `request_attachment_upload`, `upload_attachment`
+    - Programa de facturación (si lo hay, paso 5 bis): solo listar y leer facturas y descargar su PDF
 - Si no tienes `RemoteTrigger`, guía al cliente con `/schedule` usando los mismos datos.
 - Dile la hora de la primera pasada y el enlace de la rutina que devuelve la herramienta.
 

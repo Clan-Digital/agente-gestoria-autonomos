@@ -10,6 +10,9 @@ Documento que lee el Agente Gestoría en cada pasada. Cómo trabaja el agente es
 - Fecha de alta como autónomo: {{FECHA_ALTA}}.
 - Mapa fiscal: {{MODELOS}}.
 - Banderas pendientes del alta: {{BANDERAS}}.
+- Cómo llevaba sus impuestos antes del agente: {{COMO_LLEVA_IMPUESTOS}}.
+- Requerimientos o sanciones de Hacienda: {{HACIENDA}}. Si hubo alguno, revisa con más cuidado lo relacionado y menciónalo en NO CUADRA si vuelve a aparecer.
+- Lo que más le importa del agente: {{QUE_LE_INTERESA}}. Ordena tus avisos para que eso salga primero.
 
 ## Dónde está cada cosa
 
@@ -22,7 +25,8 @@ Documento que lee el Agente Gestoría en cada pasada. Cómo trabaja el agente es
   - 4T: Ingresos {{4T_INGRESOS_ID}}; Gastos {{4T_GASTOS_ID}}
 - Organización de las facturas: {{ORGANIZACION_FACTURAS}} (propia del cliente / ordenada por el agente con su permiso / estructura nueva del agente).
 - Sitio elegido para lo nuevo que cree el agente: {{SITIO_NUEVO}}.
-- Facturas emitidas: {{ORIGEN_FACTURAS_EMITIDAS}}.
+- Programa de facturación: {{PROGRAMA_FACTURACION}}.
+- Facturas emitidas: {{ORIGEN_FACTURAS_EMITIDAS}} (conector del programa / copia por email a … / las guarda en Drive).
 - Fecha de inicio: {{FECHA_INICIO}}. Lo anterior se revisa en la revisión inicial de 12 meses.
 
 ## Banco
