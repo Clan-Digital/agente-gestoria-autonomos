@@ -81,7 +81,8 @@ Mira `programa_facturacion` y `donde_estan_facturas` del código de alta y conf�
   - Holded (`https://mcp.holded.com/mcp`) y FacturaDirecta (`https://mcp.facturadirecta.com`) se añaden como conector personalizado en la misma página («Añadir conector personalizado», pegar la dirección y aceptar con su cuenta del programa).
   - Comprueba que ves sus herramientas de listar facturas y anota el conector para el paso 7 (solo herramientas de lectura de facturas y de PDF).
   - Facturas emitidas: «Las lee del conector de <programa>».
-  - Sin probar todavía: que la rutina en la nube use un conector personalizado. Si en la primera pasada (paso 8) no lo ve, pasa al caso siguiente y avisa a Claudia.
+  - Probado el 6-11-2026 con FacturaDirecta: una rutina en la nube usa un conector personalizado igual que uno del catálogo. En `mcp_connections` va con su `connector_uuid`, su URL y `transport_type` `http`. Si en la primera pasada (paso 8) no lo ve, pasa al caso siguiente y avisa a Claudia.
+  - FacturaDirecta: si la cuenta tiene varias empresas (por ejemplo, una de pruebas «sandbox»), anota en los Datos del cliente el `companyId` de la buena (`whoami`).
 - **Otro programa (Quipu, Contasimple, Billin, Anfix, Sage, otro):** primero comprueba si tiene API para leer facturas.
   - Conocidas a 6-11-2026: Quipu (API con OAuth2, en su plan Solution o superior), Contasimple (API con clave), Billin (API con token, solo en el Plan Ilimitado), Sage Active (API abierta en Starter y Essentials, sin verificar). Anfix: sin documentación pública. SumUp Facturas, Declarando y TaxDown: sin API. Si es otro, busca en la web oficial del programa si tiene API y qué plan la incluye.
   - **Si tiene API**, explícale las dos opciones y deja que elija:
