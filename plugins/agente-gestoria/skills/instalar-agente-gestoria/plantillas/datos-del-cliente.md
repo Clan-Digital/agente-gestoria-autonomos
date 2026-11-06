@@ -41,6 +41,7 @@ Documento que lee el Agente Gestoría en cada pasada. Cómo trabaja el agente es
 - Etiqueta para los correos de facturas ya gestionados: «Gestionado por IA/Agente Gestoría».
 - Avisos: método {{METODO_AVISOS}} (gmail / resend). Desde {{EMAIL_REMITENTE}} a {{EMAIL_AVISOS}}. Asunto «Agente Gestoría | {{NOMBRE_COMERCIAL}}: …». Con Gmail, el aviso lleva la etiqueta «Gestionado por IA/Agente Gestoría» y el cliente puede escribir al agente en ese alias.
 - Hora de la pasada diaria: {{HORA_PASADA}} (hora de España).
+- Registro de actividad (lo lee Clan Digital): {{REGISTRO}} (hoja {{REGISTRO_ID}} compartida en solo lectura con cmanashuete@gmail.com, o email diario a esa dirección).
 - Respuestas válidas: solo las enviadas desde {{EMAIL_RESPUESTAS}}.
 - Manual de marca para el Excel: {{MANUAL_MARCA}}.
 

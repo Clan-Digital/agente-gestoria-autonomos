@@ -67,6 +67,8 @@ En los tres casos:
 - **Excel:** copia la plantilla con `copy_file` al sitio que elija, con el nombre `Contabilidad e impuestos AAAA · NOMBRE COMERCIAL`. Si tiene manual de marca, no cambies nada ahora: apúntalo.
 - **Reglas del cliente:** si en el código de alta o en la llamada hay reglas propias del cliente (cómo clasificar un proveedor, qué parte de un gasto es de la actividad, qué cargos ignorar…), escríbelas en la pestaña «Reglas del cliente» de su Excel, una por fila: Fecha (hoy), Regla, Código «—», Origen «Instalación» y Estado «Activa». No las pongas en los Datos del cliente.
 - **Datos del cliente:** rellena `plantillas/datos-del-cliente.md` con el código de alta y los ids de este paso, y créalo como Google Doc (`create_file` con el contenido y el tipo `application/vnd.google-apps.document`) al lado del Excel. Lo que no sepas, déjalo como «pendiente» y dilo.
+- **Hoja de registro de actividad:** crea al lado del Excel una hoja de cálculo nueva (`create_file`, tipo `application/vnd.google-apps.spreadsheet`) llamada `Registro de actividad · Agente Gestoría · NOMBRE COMERCIAL`. Renombra su primera pestaña a «Latidos-Registro de Actividad/Agentes» (Sheets `update_spreadsheet`, `updateSheetProperties`) y escribe en la fila 1 estas cabeceras: Fecha y hora · Instalación/Cliente · Agente · Versión · Resultado · Detalle de Actividad. Anota su id.
+- **Compartir el registro con Clan Digital:** explica en dos líneas que Claudia solo verá esta hoja (cuándo pasó el agente y si fue bien, sin importes ni nombres de sus clientes o proveedores) para vigilar que el agente funciona, y pide permiso. Si dice que sí, compártela con `share_file` (`emailAddress` `cmanashuete@gmail.com`, `role` `reader`). Registro: `hoja`. Si dice que no o falla, usa el plan B: el agente enviará cada día una línea por email a Claudia con el asunto «Registro de actividad | Agente Gestoría · NOMBRE COMERCIAL». Registro: `email`. Díselo al cliente.
 - Si la copia de la plantilla falla por permisos, para y avisa a Claudia: la plantilla tiene que estar compartida con cualquiera que tenga el enlace.
 
 ## Paso 6 · Cómo le avisa el agente
@@ -102,7 +104,8 @@ Si elige B: cuenta en Resend, dominio verificado, una clave con permiso solo de 
   - `mcp_connections`: solo estos conectores, con solo estas herramientas:
     - Google Drive: `search_files`, `read_file_content`, `download_file_content`, `get_file_metadata`, `list_recent_files`, `create_file`
     - Google Sheets: `get_spreadsheet`, `get_values`, `update_values`, `append_values`, `update_formulas`, `update_spreadsheet`, `insert_dimension`
-    - Gmail: `search_threads`, `get_thread`, `get_message`, `list_labels`, `unlabel_message`, `label_message` y `send_message` (solo para el aviso y las respuestas a mensajes «Para»; salvo que use Resend)
+    - Gmail: `search_threads`, `get_thread`, `get_message`, `list_labels`, `unlabel_message`, `label_message` y `send_message` (para el aviso, las respuestas a mensajes «Para» y, si el registro va por email, la línea diaria a Claudia; salvo que use Resend)
+- En `plantillas/rutina.md`, sustituye `{{REGLA_REGISTRO}}` y `{{REGLA_AVISOS}}` según lo elegido (hoja o email; gmail o resend) con los textos del comentario final de la plantilla, y borra el comentario.
     - Google Docs: `read_doc`
     - Banco (si lo hay; Qonto): lectura y `request_attachment_upload`, `upload_attachment`
 - Si no tienes `RemoteTrigger`, guía al cliente con `/schedule` usando los mismos datos.
@@ -122,8 +125,11 @@ INSTALACION-AGENTE-GESTORIA
 cliente: …
 pedido_systeme: …
 version: …
+instalacion_cliente: Agente Gestoría · <NOMBRE COMERCIAL>
 rutina: <id y enlace>
-hora: …
+frecuencia: Diaria HH:MM Madrid · HH:MM UTC (<invierno/verano>)
+donde_corre: Rutina en cuenta del cliente
+registro: Hoja <id> › Latidos-Registro de Actividad/Agentes  (o: Email: Registro de actividad | Agente Gestoría · <NOMBRE COMERCIAL>)
 excel: <id>
 datos_del_cliente: <id>
 carpetas: <propias / ordenadas con permiso / nuevas>
