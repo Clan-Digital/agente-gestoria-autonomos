@@ -24,21 +24,37 @@ Los identificadores del Manual en Producción, la Base de conocimiento fiscal y 
 - Versión del agente que instalas: la que indique el código de alta (`version`); si no viene, `1.2`.
 - Plantillas de este asistente: `plantillas/datos-del-cliente.md` y `plantillas/rutina.md` (en la carpeta de esta skill).
 
+## Modo prueba
+
+Si el código de alta trae `"prueba": true`, es una instalación de prueba: el cliente solo tiene que rellenar el formulario e instalar el plugin, y tú le quitas todo lo que puedas. Cambia esto en los pasos:
+
+- **Paso 1:** no pidas número de pedido ni compruebes pago.
+- **Paso 2:** Claudia ya le ha compartido la carpeta. Comprueba el acceso igual; solo si falla, pídele «Solicitar acceso».
+- **Paso 3:** recomienda desactivar «Ayudar a mejorar Claude», pero no esperes confirmación para seguir.
+- **Paso 5:** no preguntes dónde guardar. Si sus facturas no están en Drive o están mezcladas, crea la estructura nueva en la raíz de su «Mi unidad» y no muevas nada de lo suyo. Comparte la hoja de registro con Claudia avisando en una línea («Claudia solo verá cuándo pasa el agente y si va bien»); solo si dice que no, usa el plan B.
+- **Paso 5 bis:** si su programa tiene conector (Qonto, Holded, FacturaDirecta), ofrécelo; si no, copia por email al correo de facturas, sin plantear la API.
+- **Paso 6:** avisos desde su propio Gmail (opción A), sin preguntar. Solo si no tiene cuenta de Google, plantea Resend.
+- **Paso 7:** resumen diario a las 9:00, hora de España.
+- **Paso 8:** al terminar, enséñale en una lista corta lo que has decidido por defecto (carpetas, avisos, hora, registro) y dile que cualquiera se cambia escribiendo al agente o a Claudia.
+- **Paso 9:** añade `modo: prueba` al bloque.
+
+Todo lo demás (nunca borrar, nunca pedir claves, conectores con sus permisos) sigue igual.
+
 ## Paso 0 · Comprobaciones previas (sin hablar con el cliente)
 
 - Esta sesión tiene que ser una sesión local de Claude Code (app de escritorio, pestaña Code) con la cuenta de claude.ai del cliente, plan Pro o superior. Si no hay herramienta `RemoteTrigger`, avisa: la rutina se tendrá que crear con `/schedule` en el paso 7.
 
 ## Paso 1 · Pago
 
-- Pide el **número de pedido de Systeme** con el que pagó el agente.
+- Pide el **número de pedido de Systeme** con el que pagó el agente. Si dice que no tiene porque es una prueba, pasa al paso 2: el código de alta lo confirmará (`"prueba": true`); si el código no lo dice, para y pide que hable con Claudia.
 - **Comprobación del pago: pendiente de decidir por Clan Digital.** Mientras tanto, no sigas sin un número de pedido y un código de alta (paso 2): Claudia solo entrega el código de alta tras comprobar el pago.
 
 ## Paso 2 · Bienvenida y código de alta
 
 - Pide que pegue el **código de alta** que le ha pasado Claudia. Es un bloque que empieza por `ALTA-AGENTE-GESTORIA` y contiene JSON.
-- Léelo. Campos esperados: `nombre`, `nombre_comercial`, `email`, `a_que_se_dedica`, `comunidad`, `municipio_cp`, `irpf`, `iva`, `regimen`, `actividades`, `fecha_alta`, `modelos`, `banderas`, `bancos`, `banco_cuota`, `plataformas`, `donde_facturas`, `email_facturas`, `nombre_fiscal`, `nif`, `como_lleva_impuestos`, `que_le_interesa`, `hacienda`, `hacienda_detalle`, `programa_facturacion`, `donde_estan_facturas`, `pedido_systeme`, `version`, `cuenta_google`, `carpeta_url`, `manual_id`, `base_id`, `plantilla_id`.
+- Léelo. Campos esperados: `nombre`, `nombre_comercial`, `email`, `a_que_se_dedica`, `comunidad`, `municipio_cp`, `irpf`, `iva`, `regimen`, `actividades`, `fecha_alta`, `modelos`, `banderas`, `bancos`, `banco_cuota`, `plataformas`, `donde_facturas`, `email_facturas`, `nombre_fiscal`, `nif`, `como_lleva_impuestos`, `que_le_interesa`, `hacienda`, `hacienda_detalle`, `programa_facturacion`, `donde_estan_facturas`, `pedido_systeme`, `prueba` (opcional), `version`, `cuenta_google`, `carpeta_url`, `manual_id`, `base_id`, `plantilla_id`.
 - El código lleva lo que el cliente contestó en el formulario de alta y en «Preparar mi llamada». Úsalo para rellenar los Datos del cliente y para elegir el camino del paso 5; no vuelvas a preguntar lo que ya está ahí, solo confírmalo.
-- Si el `pedido_systeme` del código no coincide con el que dio en el paso 1, para y pide que hable con Claudia.
+- Si el `pedido_systeme` del código no coincide con el que dio en el paso 1, para y pide que hable con Claudia. En modo prueba no se compara.
 - Comprueba que puedes abrir los tres documentos (`manual_id`, `base_id`, `plantilla_id`) con su cuenta. Si no puedes, su acceso aún no está activado: pídele que abra `carpeta_url` en el navegador con su cuenta de Google y pulse «Solicitar acceso». A Claudia le llega un email de Google; comprueba el pago y lo aprueba desde ese mismo email. Cuando el cliente te diga que ya tiene acceso, vuelve a comprobar. No sigas sin acceso.
 - Saluda por el nombre de pila y enséñale en tres o cuatro líneas su mapa fiscal (modelos que le tocan) y las banderas pendientes.
 
