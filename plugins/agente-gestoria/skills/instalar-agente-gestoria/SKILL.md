@@ -38,7 +38,7 @@ Si el código de alta trae `"prueba": true`, es una instalación de prueba: el c
 - **Paso 8:** al terminar, enséñale en una lista corta lo que has decidido por defecto (carpetas, avisos, hora, registro) y dile que cualquiera se cambia escribiendo al agente o a Claudia.
 - **Paso 9:** añade `modo: prueba` al bloque.
 
-Todo lo demás (nunca borrar, nunca pedir claves, conectores con sus permisos) sigue igual.
+Todo lo demás (aviso legal aceptado, nunca borrar, nunca pedir claves, conectores con sus permisos) sigue igual.
 
 ## Paso 0 · Comprobaciones previas (sin hablar con el cliente)
 
@@ -52,11 +52,22 @@ Todo lo demás (nunca borrar, nunca pedir claves, conectores con sus permisos) s
 ## Paso 2 · Bienvenida y código de alta
 
 - Pide que pegue el **código de alta** que le ha pasado Claudia. Es un bloque que empieza por `ALTA-AGENTE-GESTORIA` y contiene JSON.
-- Léelo. Campos esperados: `nombre`, `nombre_comercial`, `email`, `a_que_se_dedica`, `comunidad`, `municipio_cp`, `irpf`, `iva`, `regimen`, `actividades`, `fecha_alta`, `modelos`, `banderas`, `bancos`, `banco_cuota`, `plataformas`, `donde_facturas`, `email_facturas`, `nombre_fiscal`, `nif`, `como_lleva_impuestos`, `que_le_interesa`, `hacienda`, `hacienda_detalle`, `programa_facturacion`, `donde_estan_facturas`, `pedido_systeme`, `prueba` (opcional), `version`, `cuenta_google`, `carpeta_url`, `manual_id`, `base_id`, `plantilla_id`.
+- Léelo. Campos esperados: `nombre`, `nombre_comercial`, `email`, `a_que_se_dedica`, `comunidad`, `municipio_cp`, `irpf`, `iva`, `regimen`, `actividades`, `fecha_alta`, `modelos`, `banderas`, `bancos`, `banco_cuota`, `plataformas`, `donde_facturas`, `email_facturas`, `nombre_fiscal`, `nif`, `como_lleva_impuestos`, `que_le_interesa`, `hacienda`, `hacienda_detalle`, `programa_facturacion`, `donde_estan_facturas`, `pedido_systeme`, `prueba` (opcional), `aviso_legal` (fecha en que lo aceptó en el formulario), `version`, `cuenta_google`, `carpeta_url`, `manual_id`, `base_id`, `plantilla_id`.
 - El código lleva lo que el cliente contestó en el formulario de alta y en «Preparar mi llamada». Úsalo para rellenar los Datos del cliente y para elegir el camino del paso 5; no vuelvas a preguntar lo que ya está ahí, solo confírmalo.
 - Si el `pedido_systeme` del código no coincide con el que dio en el paso 1, para y pide que hable con Claudia. En modo prueba no se compara.
 - Comprueba que puedes abrir los tres documentos (`manual_id`, `base_id`, `plantilla_id`) con su cuenta. Si no puedes, su acceso aún no está activado: pídele que abra `carpeta_url` en el navegador con su cuenta de Google y pulse «Solicitar acceso». A Claudia le llega un email de Google; comprueba el pago y lo aprueba desde ese mismo email. Cuando el cliente te diga que ya tiene acceso, vuelve a comprobar. No sigas sin acceso.
 - Saluda por el nombre de pila y enséñale en tres o cuatro líneas su mapa fiscal (modelos que le tocan) y las banderas pendientes.
+
+## Paso 2 bis · Aviso legal
+
+Antes de configurar nada, enséñale este aviso tal cual y pídele que responda «Acepto»:
+
+> El Agente Gestoría es una herramienta de apoyo. Ni Clan Digital ni el agente prestan asesoría fiscal, ni se responsabilizan de la veracidad de los datos ni de las declaraciones que presentes. El agente no presenta, no firma y no paga nada. La revisión y la presentación de cada modelo son responsabilidad tuya, como titular.
+
+- No lo resumas ni lo suavices. Si pregunta, explícalo con sus palabras, sin cambiar el sentido.
+- Si el código de alta trae `aviso_legal` con fecha, ya lo aceptó en el formulario: enséñalo igual y pide que lo confirme aquí.
+- No sigas sin un «Acepto» claro, tampoco en modo prueba. Si no lo acepta, para y dile que hable con Claudia.
+- Anota la fecha y la hora de la aceptación para el paso 9.
 
 ## Paso 3 · Privacidad de su cuenta
 
@@ -180,6 +191,7 @@ Genera un bloque para que el cliente se lo pase a Claudia (no contiene claves):
 INSTALACION-AGENTE-GESTORIA
 cliente: …
 pedido_systeme: …
+aviso_legal: aceptado en el formulario <fecha> · en la instalación <fecha y hora>
 version: …
 instalacion_cliente: Agente Gestoría · <NOMBRE COMERCIAL>
 rutina: <id y enlace>
