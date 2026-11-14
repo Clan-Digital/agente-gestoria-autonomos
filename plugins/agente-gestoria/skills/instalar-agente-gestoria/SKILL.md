@@ -114,6 +114,18 @@ Mira `programa_facturacion` y `donde_estan_facturas` del código de alta y conf�
 
 Escribe el resultado en «Facturas emitidas» de los Datos del cliente.
 
+## Paso 5 ter · Su gestoría
+
+Pregunta: «¿Tienes gestoría o asesor que te presenta los impuestos?». Si `como_lleva_impuestos` del código de alta ya lo dice, solo confírmalo.
+
+- **No:** en los Datos del cliente, Gestoría: «no». Sigue.
+- **Sí:**
+  - Pide el nombre de la gestoría, su email y qué modelos le presenta.
+  - Explica en dos líneas lo que hará el agente: comparar lo que presente la gestoría con sus números y avisarle de cada diferencia, y, si quiere, mandarle a la gestoría cada trimestre el enlace al Excel y a las facturas.
+  - Crea dentro de la carpeta del año una carpeta `Presentado por la gestoría`. Ahí guarda el cliente los justificantes de cada modelo que le pase la gestoría. Anota su id.
+  - Pregunta si autoriza el envío trimestral a la gestoría. Si dice que sí, pide permiso para compartir con la gestoría, en solo lectura, el Excel y la carpeta del año (`share_file`, `role` `reader`) y hazlo. Anota «Envío a gestoría: autorizado». Si dice que no, anota «no autorizado»: el agente le dejará el texto preparado para que lo mande él.
+- Escríbelo en el apartado «Gestoría» de los Datos del cliente.
+
 ## Paso 6 · Cómo le avisa el agente
 
 Pregunta antes de configurar nada, con las dos opciones en dos líneas cada una:
@@ -134,7 +146,7 @@ Si elige A, hazlo tú:
 
 Si elige B: cuenta en Resend, dominio verificado, una clave con permiso solo de envío y un secreto de red para `api.resend.com`, tipo «Bearer», en el entorno del paso 6 bis. Anota: método `resend`, remitente y destinatario.
 
-**6 bis · Entorno de la rutina (guiado).** En https://claude.ai/code, ir a los entornos de la nube y crear uno llamado «Agente Gestoría», con acceso de red «Personalizado» y estos dominios: `sede.agenciatributaria.gob.es`, `boe.es`, `seg-social.es`, `infoautonomos.com` (y `api.resend.com` si usa Resend; y el dominio de la API de su programa de facturación si eligió conectarlo por API en el paso 5 bis, con su clave como secreto de red). Pide el **identificador del entorno** (empieza por `env_`). Nunca le pidas una clave.
+**6 bis · Entorno de la rutina (guiado).** En https://claude.ai/code, ir a los entornos de la nube y crear uno llamado «Agente Gestoría», con acceso de red «Personalizado» y estos dominios: `sede.agenciatributaria.gob.es`, `petete.tributos.hacienda.gob.es`, `boe.es`, `seg-social.es`, `infoautonomos.com` (y `api.resend.com` si usa Resend; y el dominio de la API de su programa de facturación si eligió conectarlo por API en el paso 5 bis, con su clave como secreto de red). Pide el **identificador del entorno** (empieza por `env_`). Nunca le pidas una clave.
 
 ## Paso 7 · Crear su rutina diaria
 
@@ -177,6 +189,7 @@ registro: Hoja <id> › Latidos-Registro de Actividad/Agentes  (o: Email: Regist
 excel: <id>
 datos_del_cliente: <id>
 carpetas: <propias / ordenadas con permiso / nuevas>
+gestoria: <no / sí, envío autorizado / sí, sin envío>
 conectores: <lista>
 avisos: <remitente → destinatario>
 pendiente: <lo que quedó a medias>

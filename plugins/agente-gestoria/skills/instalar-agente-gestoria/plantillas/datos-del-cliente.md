@@ -39,6 +39,14 @@ Documento que lee el Agente Gestoría en cada pasada. Cómo trabaja el agente es
 - Cuota de autónomos: se paga desde {{BANCO_CUOTA}}.
 - Plataformas de cobro o pago: {{PLATAFORMAS}}.
 
+## Gestoría
+
+- Tiene gestoría: {{GESTORIA}} (no / sí).
+- Nombre y email de la gestoría: {{GESTORIA_NOMBRE}} · {{GESTORIA_EMAIL}}.
+- Modelos que presenta la gestoría: {{GESTORIA_MODELOS}}.
+- Carpeta de lo presentado por la gestoría: {{GESTORIA_CARPETA_ID}}.
+- Envío trimestral a la gestoría: {{GESTORIA_ENVIO}} (autorizado / no autorizado). Excel y carpeta del año compartidos con la gestoría en solo lectura: {{GESTORIA_COMPARTIDO}}.
+
 ## Correo y avisos
 
 - Correo donde llegan las facturas de proveedores: {{EMAIL_FACTURAS}}.
