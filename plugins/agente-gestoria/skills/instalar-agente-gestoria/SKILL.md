@@ -121,8 +121,8 @@ Pregunta: «¿Tienes gestoría o asesor que te presenta los impuestos?». Si `co
 - **No:** en los Datos del cliente, Gestoría: «no». Sigue.
 - **Sí:**
   - Pide el nombre de la gestoría, su email y qué modelos le presenta.
-  - Explica en dos líneas lo que hará el agente: comparar lo que presente la gestoría con sus números y avisarle de cada diferencia, y, si quiere, mandarle a la gestoría cada trimestre el enlace al Excel y a las facturas.
-  - Crea dentro de la carpeta del año una carpeta `Presentado por la gestoría`. Ahí guarda el cliente los justificantes de cada modelo que le pase la gestoría. Anota su id.
+  - Explica en dos líneas lo que hará el agente: llevar su propia contabilidad y sus modelos, compararlos con lo que presente la gestoría y avisarle de lo que a la gestoría se le ha pasado, de lo que ha incluido y él no tiene, y de dónde aplica otro criterio; y, si quiere, mandarle a la gestoría cada trimestre el enlace al Excel y a las facturas.
+  - Crea dentro de la carpeta del año una carpeta `Presentado por la gestoría`. Ahí guarda el cliente los justificantes de cada modelo que le pase la gestoría. Recomiéndale que cada trimestre pida también a la gestoría los libros registro de facturas emitidas y recibidas y los guarde ahí: con ellos el agente compara factura por factura, y sin ellos solo por casillas. Anota su id.
   - Pregunta si autoriza el envío trimestral a la gestoría. Si dice que sí, pide permiso para compartir con la gestoría, en solo lectura, el Excel y la carpeta del año (`share_file`, `role` `reader`) y hazlo. Anota «Envío a gestoría: autorizado». Si dice que no, anota «no autorizado»: el agente le dejará el texto preparado para que lo mande él.
 - Escríbelo en el apartado «Gestoría» de los Datos del cliente.
 
